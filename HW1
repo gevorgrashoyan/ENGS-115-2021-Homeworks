@@ -1,0 +1,147 @@
+--------------------------------------------------------------------------------------------------------------------
+
+3. Can a C program be compiled or executed in the absence of a main()?
+______________________________________________________________________________________________________________________________________________
+No. The reason I believe the answer is no is because the C code can be compiled and linked as a library, but any program needs a main () to execute.
+______________________________________________________________________________________________________________________________________________
+--------------------------------------------------------------------------------------------------------------------
+
+4. Can I declare the same variable name to the variables which have different
+scopes?
+
+void function1()
+{
+   int variable = 0;
+}
+void function()
+{
+   int variable = 5;
+}
+__________________________________________________
+Yes. Because the name exists only in its scope.
+__________________________________________________
+--------------------------------------------------------------------------------------------------------------------
+
+5. What will print the following code?
+
+void increment(int* i)
+{
+    *i = *i + 1;
+}
+int main()
+{
+    int count = 7;
+    increment(&count);
+    printf("%d\n", count);
+    return 0;
+}
+____________________________________________________________________________________________________________________________________________
+It’s going to print 8. Main is passing the address of count. In increment Int* means pointer to int => it’s an address to an int. It takes the value at the location i, then it adds 1 to it. After that the 8 is being stored in i again.
+________________________________________________________________________________________________
+--------------------------------------------------------------------------------------------------------------------
+
+6. What will print the following program?
+
+#include <stdio.h>
+
+int main()
+{
+    int x = 5641;
+    if (x & 1) {
+        printf("Even\n");
+    } else {
+        printf("Odd\n");
+    }
+    return 0;
+}
+____________________________________________________________
+The answer is even. Because x & 1 is not 0, so it’s true. 
+____________________________________________________________
+--------------------------------------------------------------------------------------------------------------------
+
+
+7. What will print the following program, if the sizeof(int) is equal 4?
+
+int main()
+{
+    int x[5];
+    printf("sizeof(int)=%ld, sizeof(x)=%ld", sizeof(int), sizeof(x));
+    return 0;
+}
+____________________________________________________________________________________________________________________________________________
+An integer takes 4 bytes. What the program does is, it prints the size of int and it prints the size of whatever is passed in bytes. So, 4 and 20 is the answer.
+_____________________________________________________________________________________________________________________________________________
+--------------------------------------------------------------------------------------------------------------------
+
+8. What will print the following program, if as array size '7' is provided?
+
+int main()
+{
+    int s = 0;
+    printf("Enter array size: ");
+    scanf("%d", &s);
+    int* a = new int[s];
+    for (int i = 0; i < s; ++i) {
+        a[i] = i;
+    }
+    for (int i = 0; i < s; ++i) {
+        printf("%d\n", a[i]);
+    }
+    delete [] a;
+    return 0;
+}
+__________________________________________________________________________
+Line number 83 and 90 are not C syntax to begin with.
+
+The corrected version I think should be: 
+
+#include <stdio.h>
+
+int main()
+{
+    int s = 0;
+    printf("Enter array size: ");
+    scanf("%d", &s);
+    //int* a = int[s];
+    int a[s];
+    for (int i = 0; i < s; ++i) {
+        a[i] = i;
+    }
+    for (int i = 0; i < s; ++i) {
+        printf("%d\n", a[i]);
+    }
+    return 0;
+}
+
+The answer would print one number on each line 0 1 2 3 4 5 6 accordingly. 
+____________________________________________________________________________
+--------------------------------------------------------------------------------------------------------------------
+
+9. What will print the following program?
+
+struct point
+{
+    int x;
+    int y;
+};
+
+int main()
+{
+    struct point p = {4, 5};
+    printf("x=%d, y=%d\n", p.x, p.y);
+    return 0;
+}
+_______________________________________________________________________________________________________________________________
+The answer is x=4 and y=5. It creates a structure named point with integer fields x and y. And initializes x to 4 and y to 5.
+_______________________________________________________________________________________________________________________________
+--------------------------------------------------------------------------------------------------------------------
+
+10. Can the union elements be of different sizes?
+union data
+{
+    char c;
+    int i;
+};
+________________________________________________________________________________________________________
+Yes. The definition of union is that it allows for different types to share the same memory location.
+________________________________________________________________________________________________________
